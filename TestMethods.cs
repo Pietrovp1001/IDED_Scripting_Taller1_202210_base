@@ -9,8 +9,39 @@ namespace TestProject1
         //--------------------------Punto 1-------------------------------------------
         internal static Stack<int> GetNextGreaterValue(Stack<int> sourceStack) 
         {
-            Stack<int> result = null;
+            Stack<int> result = new Stack<int>();
+            int[] ArregloNums = sourceStack.ToArray();
+            Array.Reverse(ArregloNums);
+            int Count = sourceStack.Count;
 
+            for (int i = 0; i <= Count - 1; i++)
+            {
+                if (i == (Count - 1))
+                {
+                    result.Push(-1);
+                    break;
+                }
+                for (int j = i + 1; j < Count; j++)
+                {
+                    if (ArregloNums[i] < ArregloNums[j])
+                    {
+                        result.Push(ArregloNums[j]);
+                        i++;
+                    }
+
+                    if (j == Count - 1)
+                    {
+                        if (ArregloNums[i] < ArregloNums[j])
+                        {
+                            result.Push(ArregloNums[j]);
+                        }
+                        else
+                        {
+                            result.Push(-1);
+                        }
+                    }
+                }
+            }                      
             return result;
         }
         //--------------------------Fin Punto 1-------------------------------------------
